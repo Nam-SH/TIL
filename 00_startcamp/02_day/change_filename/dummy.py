@@ -1,4 +1,6 @@
-# Create dummy files
+﻿# Create dummy files
+# git bash d에서 이 파일명을 실행
+
 import os
 import random
 
