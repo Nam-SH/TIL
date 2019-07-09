@@ -15,3 +15,5 @@ for i in range(1, 21) :
     a.append(soup.select_one("#PM_ID_ct > div.header > div.section_navbar > div.area_hotkeyword.PM_CL_realtimeKeyword_base > div.ah_roll.PM_CL_realtimeKeyword_rolling_base > div > ul > li:nth-child(%d) > a > span.ah_k"%i).text)
 
 print(a)
+
+# 두 번째 커밋을 위한 주석
