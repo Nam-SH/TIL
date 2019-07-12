@@ -1,16 +1,24 @@
+<!-- templates/lotto_check.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
 </head>
 <body>
-    <h1>로또로또로또</h1>
-    <form action="/lotto_result"></form>
-        로또 회사: <input type="text" name="num">
-        로또 번호: <input type="text" name="numbers">
-        <input type="submit" value="로또가즈아">
+  <h1>로또 확인</h1>
+  <form action="/lotto_result">
+    로또회차: <input type="number" name="num"><br>
+    로또번호: <input type="text" name="numbers"><br>
+    <input type="submit" value="submit"><br>
+  
+    <h1>로또 전체 번호</h1>
+  <form action="/lotto_numbers">
+    로또회차: <input type="number" name="num"><br>
+    <input type="submit" value="submit">
+  </form>
 </body>
 </html>

@@ -1,0 +1,35 @@
+{
+    'update_id': 643663201, 
+    'message': {
+        'message_id': 9, 
+        'from': {
+            'id': 873957605, 
+            'is_bot': False, 
+            'first_name': '승현', 
+            'last_name': '남', 
+            'language_code': 'ko'
+        }, 
+        'chat': {
+            'id': 873957605, 
+            'first_name': '승현', 
+            'last_name': '남', 
+            'type': 'private'
+        }, 
+        'date': 1562898006, 
+        'text': 'dd'
+    }
+}
+
+
+{
+    'message': {
+        '@type': 'response',
+        '@service': 'naverservice.nmt.proxy',
+        '@version': '1.0.0',
+        'result': {
+            'srcLangType': 'ko',
+            'tarLangType': 'en',
+            'translatedText': 'apple'
+        }
+    }
+ }
