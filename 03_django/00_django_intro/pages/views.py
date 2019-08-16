@@ -13,36 +13,36 @@ from django.shortcuts import render
 
 # Create your views here.
 def index(request): # 첫 번째 인자는 반드시 request
-    return render(request, 'index.html') # render()의 첫 번재 인자도 반드시 request
+    return render(request, 'pages/index.html') # render()의 첫 번재 인자도 반드시 request
 
 
 def introduce(request, name, age):
     context = {'name': name, 'age': age,}
-    return render(request, 'introduce.html', context)
+    return render(request, 'pages/introduce.html', context)
 
 
 def dinner(request):
     menu = ['족발', '햄버걸', '취킨', '김밥']
     pick = random.choice(menu)
     context = {'pick': pick}
-    return render(request, 'dinner.html', context)
+    return render(request, 'pages/dinner.html', context)
 
 
 def image(request):
-    return render(request, 'image.html')
+    return render(request, 'pages/image.html')
 
 
 def hello(request, name):
     menu = ['족발', '햄버걸', '취킨', '김밥']
     pick = random.choice(menu)
     context = {'pick': pick, 'name': name,}
-    return render(request, 'hello.html', context)
+    return render(request, 'pages/hello.html', context)
 
 
 def times(request, num1, num2):
     num3 = num1 * num2
     context = {'num3': num3, 'num1': num1, 'num2': num2,}
-    return render(request, 'times.html', context)
+    return render(request, 'pages/times.html', context)
 
 
 def template_language(request):
@@ -58,7 +58,7 @@ def template_language(request):
       'empty_list': empty_list,
       'datetimenow': datetimenow,
     }
-    return render(request, 'template_language.html', context)
+    return render(request, 'pages/template_language.html', context)
 
 
 def isitgwangbok(request):
@@ -68,11 +68,11 @@ def isitgwangbok(request):
     else:
         result = False
     context = {'result': result}
-    return render(request, 'isitgwangbok.html', context)
+    return render(request, 'pages/isitgwangbok.html', context)
 
 
 def throw(request):
-    return render(request, 'throw.html')
+    return render(request, 'pages/throw.html')
 
 
 def catch(request):
@@ -83,11 +83,11 @@ def catch(request):
     pprint(request.META)
     message = request.GET.get('message')
     context = {'message': message,}
-    return render(request, 'catch.html', context)
+    return render(request, 'pages/catch.html', context)
 
 
 def art(request):
-    return render(request, 'art.html')
+    return render(request, 'pages/art.html')
 
 
 def result(request):
@@ -108,19 +108,19 @@ def result(request):
 
     context = {'response': response,}
 
-    return render(request, 'result.html', context)
+    return render(request, 'pages/result.html', context)
 
 
 def user_new(request):
-    return render(request, 'user_new.html')
+    return render(request, 'pages/user_new.html')
 
 
 def user_create(request):
     name = request.POST.get('name')
     pwd = request.POST.get('pwd')
     context = {'name': name, 'pwd': pwd,}
-    return render(request, 'user_create.html', context)
+    return render(request, 'pages/user_create.html', context)
 
 
 def static_example(request):
-    return render(request, 'static_example.html')
+    return render(request, 'pages/static_example.html')
