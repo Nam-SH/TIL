@@ -14,17 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from pages import views # 생성한 app pages 폴더 안의 views.py파일 
+from django.urls import path, include
+
 
 urlpatterns = [
-    path('isitgwangbok/', views.isitgwangbok),
-    path('template_language/', views.template_language),
-    path('times/<int:num1>/<int:num2>/', views.times),
-    path('hello/', views.hello),
-    path('image/', views.image),
-    path('dinner/', views.dinner),
-    path('index/', views.index), # url 경로 마지막에 /를 붙이는 습관
-    path('introduce/<str:name>/<int:age>/', views.introduce),
+    path('utilities/', include('utilities.urls')),
+    path('pages/', include('pages.urls')),
     path('admin/', admin.site.urls),
 ]

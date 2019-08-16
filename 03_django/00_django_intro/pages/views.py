@@ -7,6 +7,8 @@
 
 import random
 from datetime import datetime
+from pprint import pprint
+import requests
 from django.shortcuts import render
 
 # Create your views here.
@@ -58,6 +60,7 @@ def template_language(request):
     }
     return render(request, 'template_language.html', context)
 
+
 def isitgwangbok(request):
     today = datetime.now()
     if today.month == 8 and today.day == 15:
@@ -66,3 +69,58 @@ def isitgwangbok(request):
         result = False
     context = {'result': result}
     return render(request, 'isitgwangbok.html', context)
+
+
+def throw(request):
+    return render(request, 'throw.html')
+
+
+def catch(request):
+    # pprint(request)
+    # pprint(request.scheme)
+    # pprint(request.path)
+    # pprint(request.method)
+    pprint(request.META)
+    message = request.GET.get('message')
+    context = {'message': message,}
+    return render(request, 'catch.html', context)
+
+
+def art(request):
+    return render(request, 'art.html')
+
+
+def result(request):
+    # 1. art에서 form으로 보낸 데이터를 받는다.
+    word = request.GET.get('word')
+
+    # 2. ARTII API 폰트 리스트로 요청을 보내 응답을 text로 받는다.
+    fonts = requests.get('http://artii.herokuapp.com/fonts_list').text
+    
+    # 3. str 을 리스트로 바꿔서 저장
+    fonts = fonts.split('\n')
+
+    # 4. fonts list 안에 들어있는 요소 중 하나를 선택해서 변수에 저장
+    font = random.choice(fonts)
+
+    # 5. 위에서 만든 word와 font를 가지고 다시 요청을 만들어서 보내 응답결과를 받는다.
+    response = requests.get(f'http://artii.herokuapp.com/make?text={word}&font={font}').text
+
+    context = {'response': response,}
+
+    return render(request, 'result.html', context)
+
+
+def user_new(request):
+    return render(request, 'user_new.html')
+
+
+def user_create(request):
+    name = request.POST.get('name')
+    pwd = request.POST.get('pwd')
+    context = {'name': name, 'pwd': pwd,}
+    return render(request, 'user_create.html', context)
+
+
+def static_example(request):
+    return render(request, 'static_example.html')
