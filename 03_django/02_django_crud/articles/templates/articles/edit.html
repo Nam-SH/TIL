@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1 class="text-center">EDIT</h1>
-  <form action="/articles/{{ article.pk }}/update/" method="POST">
+  <form action={% url 'articles:update' article.pk %} method="POST">
     {% csrf_token %}
     <label for="title">TITLE</label>
     <input type="text" name="title" id="title" value="{{ article.title }}"><br>
@@ -10,5 +10,5 @@
     <textarea name="content" id="content" cols="30" rows="5">{{ article.content }}</textarea><br>
     <input type="submit" value="submit">
   </form>
-  <a href="/articles/{{ article.pk }}/">[back]</a>
+  <a href={% url 'articles:detail' article.pk%}>[back]</a>
 {% endblock %}
