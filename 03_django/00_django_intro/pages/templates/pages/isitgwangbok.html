@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
+
 {% block content %}
+  {% if result %}
+  <h1>오늘은 광복절입니다!</h1>
+  {% else %}
+  <h1>오늘은 광복절이 아닙니다!</h1>
+  {% endif %}
+{% endblock %}
 
-{% if result %}
-<p> 오늘 광복절 맞음 </p>
-{% else %}
-<p> 오늘 강복절 아님 </p>
-{% endif %}
 
-{% endblock  %}

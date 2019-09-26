@@ -1,10 +1,8 @@
-# django import style guide
+# django imports style guide
 # 1. standard library
-# 2. third-pardy (request ...)
+# 2. third-party
 # 3. Django
 # 4. local django
-
-
 import random
 from datetime import datetime
 from pprint import pprint
@@ -12,8 +10,8 @@ import requests
 from django.shortcuts import render
 
 # Create your views here.
-def index(request): # 첫 번째 인자는 반드시 request
-    return render(request, 'pages/index.html') # render()의 첫 번재 인자도 반드시 request
+def index(request): # 첫번째 인자는 반드시 request
+    return render(request, 'pages/index.html') # render() 의 첫번째 인자도 반드시 request
 
 
 def introduce(request, name, age):
@@ -22,9 +20,9 @@ def introduce(request, name, age):
 
 
 def dinner(request):
-    menu = ['족발', '햄버걸', '취킨', '김밥']
+    menu = ['족발', '햄버거', '치킨', '초밥']
     pick = random.choice(menu)
-    context = {'pick': pick}
+    context = {'pick': pick,}
     return render(request, 'pages/dinner.html', context)
 
 
@@ -33,9 +31,9 @@ def image(request):
 
 
 def hello(request, name):
-    menu = ['족발', '햄버걸', '취킨', '김밥']
+    menu = ['족발', '햄버거', '치킨', '초밥']
     pick = random.choice(menu)
-    context = {'pick': pick, 'name': name,}
+    context = {'name': name, 'pick': pick,}
     return render(request, 'pages/hello.html', context)
 
 
@@ -45,18 +43,24 @@ def times(request, num1, num2):
     return render(request, 'pages/times.html', context)
 
 
+def area(request, r):
+    area = (r ** 2) * 3.14
+    context = {'r': r, 'area': area,}
+    return render(request, 'pages/area.html', context)
+
+
 def template_language(request):
-    menus = ['자장면', '탕수육', '라조기', '양장피', '찜뽕',]
+    menus = ['짜장면', '탕수육', '짬뽕', '양장피',]
     my_sentence = 'Life is short, you need python'
     messages = ['apple', 'banana', 'cucumber', 'bean',]
     datetimenow = datetime.now()
     empty_list = []
     context = {
-      'menus': menus,
-      'my_sentence': my_sentence,
-      'messages': messages,
-      'empty_list': empty_list,
-      'datetimenow': datetimenow,
+        'menus': menus,
+        'my_sentence': my_sentence,
+        'messages': messages,
+        'datetimenow': datetimenow,
+        'empty_list': empty_list,
     }
     return render(request, 'pages/template_language.html', context)
 
@@ -67,7 +71,7 @@ def isitgwangbok(request):
         result = True
     else:
         result = False
-    context = {'result': result}
+    context = {'result': result,}
     return render(request, 'pages/isitgwangbok.html', context)
 
 
@@ -80,7 +84,8 @@ def catch(request):
     # pprint(request.scheme)
     # pprint(request.path)
     # pprint(request.method)
-    pprint(request.META)
+    # pprint(request.GET)
+    # pprint(request.META)
     message = request.GET.get('message')
     context = {'message': message,}
     return render(request, 'pages/catch.html', context)
@@ -91,23 +96,22 @@ def art(request):
 
 
 def result(request):
-    # 1. art에서 form으로 보낸 데이터를 받는다.
+    # 1. art 에서 form 으로 보낸 데이터를 받는다.
     word = request.GET.get('word')
 
-    # 2. ARTII API 폰트 리스트로 요청을 보내 응답을 text로 받는다.
+    # 2. ARTII API 폰트 리스트로 요청을 보내 응답을 text 로 받는다.
     fonts = requests.get('http://artii.herokuapp.com/fonts_list').text
     
-    # 3. str 을 리스트로 바꿔서 저장
+    # 3. str 을 list 로 바꾼다.
     fonts = fonts.split('\n')
 
     # 4. fonts list 안에 들어있는 요소 중 하나를 선택해서 변수에 저장
     font = random.choice(fonts)
 
-    # 5. 위에서 만든 word와 font를 가지고 다시 요청을 만들어서 보내 응답결과를 받는다.
+    # 5. 위에서 만든 word 와 font 를 가지고 다시 요청을 만들어서 보내 응답결과를 받는다.
     response = requests.get(f'http://artii.herokuapp.com/make?text={word}&font={font}').text
-
+    
     context = {'response': response,}
-
     return render(request, 'pages/result.html', context)
 
 

@@ -3,9 +3,9 @@ from .models import Article
 
 # class ArticleForm(forms.Form):
 #     title = forms.CharField(
-#         max_length=10,
+#         max_length=10, 
 #         label='제목',
-#         widget = forms.TextInput(
+#         widget=forms.TextInput(
 #             attrs={
 #                 'class': 'my-title',
 #                 'placeholder': 'Enter the title',
@@ -13,10 +13,10 @@ from .models import Article
 #         )
 #     )
 #     content = forms.CharField(
-#         label='제목',
-#         widget = forms.TextInput(
+#         label='내용',
+#         widget=forms.Textarea(
 #             attrs={
-#                 'class': 'my-title',
+#                 'class': 'my-content',
 #                 'placeholder': 'Enter the content',
 #                 'rows': 5,
 #                 'cols': 50,
@@ -26,26 +26,35 @@ from .models import Article
 
 class ArticleForm(forms.ModelForm):
     title = forms.CharField(
-        label = '제목',
+        label='제목',
         max_length=10,
-        widget = forms.TextInput(
-            attrs = {
-                'class': 'my-title',
+        widget=forms.TextInput(
+            attrs={
+                'class': 'my-title', 
                 'placeholder': 'Enter the title',
+            }
+        )
+    )
+    content = forms.CharField(
+        label='내용',
+        widget=forms.Textarea(
+            attrs={
+                'class': 'my-content',
+                'placeholder': 'Enter the content',
                 'rows': 5,
                 'cols': 50,
             }
         )
     )
-
+    
     class Meta:
         model = Article
-        # fields = ('title', 'content', )
-        # exclude = ('title', )
+        # fields = ('title', 'content',)
         fields = '__all__'
-
+        # exclude = ('title',)
         # widgets = {
-        #     'title': forms.TextInput(attrs = {
+        #     'title': forms.TextInput(attrs={
         #         'class': 'my-title'
         #     })
         # }
+        

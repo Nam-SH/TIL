@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'j^uizs7h*zz@wq1hr8jvh7wa@!btw&8gwu#s9i%lfh25zj-)44'
+SECRET_KEY = 'g%c4#bu-vxmcqft+u-@yq2!f46bszb)ow+praj10%ekcvb9j%^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # app 등록순서
+    # app 등록 순서
     # 1. local apps
     # 2. Third party apps
     # 3. Django apps
@@ -106,14 +106,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization 
-# ==> I18N
+# Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-# LANGUAGE_CODE = 'en-us'
 LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
