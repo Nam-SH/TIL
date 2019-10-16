@@ -17,13 +17,13 @@ TIL
 ```
 
 ```bash
-# 가상환경 생성
+# 가상환경 생성 (01_django_orm_crud 안에서)
 $ python -m venv venv 
 
 # 가상환경 활성화 (또는 vscode python interpreter 로 활성화)
 $ source venv/Scripts/activate
  
-# 장고 설치
+# 장고 설치 (만일 requirements.txt가 있다면, pip install -r requirements.txte)
 $ pip install django
 
 # 프로젝트 시작
@@ -84,9 +84,11 @@ INSTALLED_APPS = [
     1. **개념**
     - *wikipedia*
     
-            "Object-Relational-Mapping 은 객체 지향 프로그래밍 언어를 사용하여 호환되지 않는 유형의 
-            시스템간에(Django - SQL)데이터를 변환하는 프로그래밍 기술이다. 
-                이것은 프로그래밍 언어에서 사용할 수 있는 '가상 객체 데이터베이스'를 만들어 사용한다."
+        ```reStructuredText
+        "Object-Relational-Mapping 은 객체 지향 프로그래밍 언어를 사용하여 호환되지 않는 유형의 
+        시스템간에(Django - SQL)데이터를 변환하는 프로그래밍 기술이다. 
+        이것은 프로그래밍 언어에서 사용할 수 있는 '가상 객체 데이터베이스'를 만들어 사용한다."
+        ```
         
         - OOP 프로그래밍에서 RDBMS을 연동할 때, **데이터베이스와 객체 지향 프로그래밍 언어 간의 호환되지 않는 데이터를 변환하는 프로그래밍 기법**이다. 객체 관계 매핑이라고도 부른다.
         - 객체 지향 언어에서 사용할 수 있는 '**가상' 객체 데이터베이스를 구축하는 방법**이다.
@@ -126,6 +128,9 @@ INSTALLED_APPS = [
 
 ```python
 # articles/models.py
+from django.db import models
+from django.urls import reverse
+
 
 class Article(models.Model): # 상속
     # id(프라이머리 키)는 기본적으로 처음 테이블 생성시 자동으로 만들어진다.
@@ -194,7 +199,7 @@ class Article(models.Model): # 상속
         
         class Article(models.Model):
         		...
-        updated_at = models.DateTimeField(auto_now=True)
+        updated_at = models.DateTimeField(auto_now=True) #기존에 이것만 추가함
         ```
         
         ```bash

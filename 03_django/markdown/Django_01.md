@@ -8,37 +8,46 @@
 >
 >2. `f1` - `Preferences: Open Settings(JSON)`
 >
->   ```JSON
->   // settings.json
->   
->   "files.associations": {
->       "**/*.html": "html",
->       "**/templates/**/*.html": "django-html",
->       "**/templates/**/*": "django-txt",
->       "**/requirements{/**,*}.{txt,in}": "pip-requirements"
->   },
->   
->   "emmet.includeLanguages": {
->       "django-html": "html"
->   },
->   
->   "[django-html]": {
->       "editor.tabSize": 2
->   },
->   
->   // beautify
->   "beautify.language": {
->       "js": {
->           "type": ["javascript", "json"],
->           "filename": [".jshintrc", ".jsbeautifyrc"]
->           // "ext": ["js", "json"]
->           // ^^ to set extensions to be beautified using the javascript beautifier
->       },
->       "css": ["css", "scss"],
->       "html": ["htm", "html", "django-html"]
->       // ^^ providing just an array sets the VS Code file type
->   },
->   ```
+>```JSON
+>{
+>  "terminal.integrated.cwd": "${workspaceFolder}",
+>  "editor.fontFamily": "Fira code, Source Code Pro, Consolas, 'Courier New', monospace",
+>  "[html]": { 
+>      "editor.tabSize": 2
+>  },
+>  "[css]": {
+>      "editor.tabSize": 2
+>  },
+>  "[django-html]": {
+>      "editor.tabSize": 2
+>  },
+>  "workbench.iconTheme": "material-icon-theme",
+>  "workbench.colorTheme": "Default Light+",
+>  "editor.tabSize": 2,
+>  "explorer.confirmDelete": false,
+>  "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+>  "window.zoomLevel": 0,
+>​
+>  "beautify.language": {
+>    "js": {
+>      "type": ["javascript", "json"],
+>      "filename": [".jshintrc", ".jsbeautifyrc"]
+>    },
+>    "css": ["css", "scss"],
+>    "html": ["htm", "html"]
+>  },
+>  "files.associations": {
+>      "**/*.html": "html",
+>      "**/templates/**/*.html": "django-html",
+>      "**/templates/**/*": "django-txt",
+>      "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+>  },
+>  "emmet.includeLanguages": {
+>      "django-html": "html"
+>  },
+>  "explorer.confirmDragAndDrop": false
+>}
+>```
 >
 >[DJANGO 디자인 철학](https://docs.djangoproject.com/en/2.2/misc/design-philosophies/)
 
@@ -63,7 +72,7 @@
 - 과거에는 가상환경을 파이썬 자체적으로 제공하지 않아서 별도의 패키지를 설치해야 했다.(`virtualenv`) 버전 3.5 이후부터는 파이썬에 `venv` 라는 이름으로 가상환경 모듈을 지원한다.
 
 - 윈도우, 리눅스, 맥 구분없이 가상환경을 생성하는 방법은 동일
-    
+  
     - 윈도우는 `Scripts` 폴더 생성
     
 - 리눅스, 맥은 `bin` 폴더 생성
@@ -92,8 +101,6 @@
 
 **가상 환경 참고 사항**
 
-- **사정상(대전2반) 3.7을 사용하려면 일단 사용자 환경변수에서 37 을 35 위로 올리자.**
-
 - 가상 환경 실행은 `venv` 파일이 존재하는 곳에서 한다.
 
 - 가상 환경 생성 할 때 생성하는 폴더 이름인 `venv` 는 중복 되도 상관없다. 새로이 가상 환경을 생성하고 싶은 폴더로 이동해서 아래의 로직을 수행하면 된다.
@@ -109,14 +116,13 @@
     $ deactivate
     ```
 
-    - 가상 환경 `deactivate` 의 경우 위치에 상관없이 가능하다.
 
 
 
 **가상 환경 on/off**
 
 - git bash 에서 활성화 (가상 환경 설정 폴더 안에서 진행)
-    
+  
     - vs code를 새로 켜지 않으면 activate 된 해당 터미널은 해당 가상환경으로 계속 잡혀있음
     
 - 터미널을 어떤 걸로 켜든 새로 켜면 무조건 글로벌이고 가상 환경을 activate를 하면 가상 환경을 잡는다.
@@ -220,7 +226,7 @@ $ python manage.py runserver
     - Web Server Gateway Interface
     - 파이썬 웹 프레임 워크에서 사용하는 웹 서버 규칙
     - (지금 당장 사용되지는 않고, 나중에 서버에 배포할 때 사용하게 되는 파일! 정도로만 설명)
-- [`manage.py`](http://manage.py)
+- `manage.py`
     - django 프로젝트와 다양한 방법으로 상호 작용하는 커맨드라인 유틸리티
 
 
@@ -373,7 +379,7 @@ Django에서는 Model, Template(View), View(Controller) 라고 부르는데 실�
     # pages/views.py
     
     def index(request): # 첫번째 인자는 반드시 request
-    		return render(request, 'index.html') # render의 첫번째 인자도 반드시 request
+    		return render(request, 'pages/index.html') # render의 첫번째 인자: request
     ```
 
 
@@ -398,7 +404,7 @@ Django에서는 Model, Template(View), View(Controller) 라고 부르는데 실�
     from pages import views  # 생성한 앱 pages 폴더 안의 views.py 파일
     
     urlpatterns = [
-    		path('index/', views.index), # url 경로 마지막에 /를 붙이는 습관
+    	path('index/', views.index), # url 경로 마지막에 /를 붙이는 습관
         path('admin/', admin.site.urls), 
     ]
     ```
@@ -486,7 +492,7 @@ def dinner(request):
 def dinner(request):
     menu = ['족발', '햄버거', '치킨', '초밥']
     pick = random.choice(menu)
-		context = {'pick': pick}
+	context = {'pick': pick}
     return render(request, 'dinner.html', context)
 ```
 

@@ -63,8 +63,8 @@
     <!--pages/templates/throw.html-->
     
     <form action="/catch/" method="GET">
-    		<input type="text" name="message">
-    		<input type="submit">
+    	<input type="text" name="message">
+    	<input type="submit">
     </form>
     ```
 
@@ -77,7 +77,7 @@
     
     def catch(request):
         message = request.GET.get('message')
-    		context = {'message':message}
+    	context = {'message':message}
         return render(request, 'catch.html', context)
     ```
 
@@ -106,13 +106,13 @@
 > from pprint import pprint
 > 
 > def catch(request):
->     pprint(request)
->     pprint(request.scheme)
->     pprint(request.path)
->     pprint(request.method)
->     pprint(request.headers)  # New in Django 2.2
->     pprint(request.META)
->     pprint(request.GET)  # <QueryDict: {'message': ['호호호']}>
+>    	pprint(request)
+>        pprint(request.scheme)
+>        pprint(request.path)
+>        pprint(request.method)
+>        pprint(request.headers)  # New in Django 2.2
+>        pprint(request.META)
+>        pprint(request.GET)  # <QueryDict: {'message': ['호호호']}>
 > ```
 >
 > - `request.headers` 를 해서 출력되는 건 크롬에서도 확인 가능하다.
@@ -176,6 +176,7 @@ path('art/', views.art),
 </form>
 
 
+
 <!-- pages/templates/result.html -->
 
 <h1>ASCII ARTII</h1>
@@ -208,17 +209,19 @@ path('art/', views.art),
 >
 >   - `settings.py`
 >
->     ```python
->     MIDDLEWARE = [
->     	'django.middleware.security.SecurityMiddleware',
->     	'django.contrib.sessions.middleware.SessionMiddleware',
->     	'django.middleware.common.CommonMiddleware',
->     	'django.middleware.csrf.CsrfViewMiddleware', # 이곳
->     	'django.contrib.auth.middleware.AuthenticationMiddleware',
->     	'django.contrib.messages.middleware.MessageMiddleware',
->     	'django.middleware.clickjacking.XFrameOptionsMiddleware',
->     ]
->     ```
+>  ```python
+>  MIDDLEWARE = [
+>  	'django.middleware.security.SecurityMiddleware',
+>  	'django.contrib.sessions.middleware.SessionMiddleware',
+>  	'django.middleware.common.CommonMiddleware',
+>      
+>  	'django.middleware.csrf.CsrfViewMiddleware', # 이곳
+>      
+>  	'django.contrib.auth.middleware.AuthenticationMiddleware',
+>  	'django.contrib.messages.middleware.MessageMiddleware',
+>  	'django.middleware.clickjacking.XFrameOptionsMiddleware',
+>  ]
+>  ```
 >
 > - 실제로 **요청 과정에서 urls.py 이전에 Middleware의 설정 사항들을 순차적으로 거친다.** 응답은 아래에서 위로부터 미들웨어를 적용시킨다.
 >
@@ -455,7 +458,7 @@ urlpatterns = [
     # utilities/views.py
     
     def index(request):
-        return render(request, 'index.html')
+        return render(request, 'utilities/index.html')
     ```
     
     ```python
@@ -577,12 +580,16 @@ https://docs.djangoproject.com/ko/2.2/misc/design-philosophies/#don-t-repeat-you
     <body>
       <h1 class="text-center">Template Inheritnace</h1>
       <hr>
+        
+        
       <div class="container">
         {% block content %}
-        {% endblock %}
+        {% endblock %}  
       </div>
+        
+        
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        integrity="sha384- q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
       </script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
@@ -601,7 +608,9 @@ https://docs.djangoproject.com/ko/2.2/misc/design-philosophies/#don-t-repeat-you
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            
             'DIRS': [os.path.join(BASE_DIR, 'django_intro', 'templates')], # 추가
+            
             'APP_DIRS': True,
             ...
         },
@@ -631,17 +640,19 @@ https://docs.djangoproject.com/ko/2.2/misc/design-philosophies/#don-t-repeat-you
       <title>Document</title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css"
         integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+        
       {% block css %}
       {% endblock %}
+        
     </head>
     
-    ...
+...
     ```
-
+    
     ```django
     <!-- 예시 templates/pages/static_example.html-->
     
-    {% extends 'base.html' %}
+    {% extends 'base.html' %} 	/--> project의 base.html 불러오기임 <--/
     {% load static %}
     
     {% block css %}
@@ -651,9 +662,9 @@ https://docs.djangoproject.com/ko/2.2/misc/design-philosophies/#don-t-repeat-you
     {% block content %}
     <h1>static</h1>
     <img src="{% static 'pages/images/audrey.jpg' %}" alt="static_img">
-    {% endblock  %}
+{% endblock  %}
     ```
-
+    
     - **`{% extends '' %}` 는 반드시 문서 최상단에 위치해야 한다.**
 
 
