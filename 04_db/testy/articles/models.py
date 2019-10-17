@@ -16,8 +16,8 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         return reverse("articles:detail", kwargs={"article_pk": self.pk})
+    
   
-
 class Comment(models.Model):
     artile = models.ForeignKey(Article, on_delete=models.CASCADE)
     content = models.CharField(max_length=140)
@@ -30,4 +30,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content
-    

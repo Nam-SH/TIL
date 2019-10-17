@@ -22,21 +22,6 @@ def create(request):
     return render(request, 'articles/form.html', context)
 
 
-def detail(request, article_pk):
-    article = get_object_or_404(Article, pk=article_pk)
-    context = {'article': article,}
-    return render(request, 'articles/detail.html', context)
-
-
-def delete(request, article_pk):
-    article = get_object_or_404(Article, pk=article_pk)
-    if request.method == 'POST':
-        article.delete()
-        return redirect('articles:index')
-    else:
-        return redirect(article)
-
-
 def update(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
     if request.method == 'POST':
@@ -48,3 +33,13 @@ def update(request, article_pk):
         form = ArticleForm(instance=article)
     context = {'form': form, 'article': article,}
     return render(request, 'articles/form.html', context)
+
+
+def detail(request, article_pk):
+    article = get_object_or_404(Article, pk = article_pk)
+    
+
+def delete(request, article_pk):
+    article = get_object_or_404(Article, pk = article_pk)
+    article.delete()
+    return redirect('articles:index')
