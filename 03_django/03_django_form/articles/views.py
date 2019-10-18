@@ -55,3 +55,5 @@ def update(request, article_pk):
         form = ArticleForm(instance=article)
     context = {'form': form, 'article': article,}
     return render(request, 'articles/form.html', context)
+
+
