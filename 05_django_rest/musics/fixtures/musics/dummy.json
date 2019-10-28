@@ -1,0 +1,71 @@
+[
+{
+  "model": "musics.artist",
+  "pk": 1,
+  "fields": {
+    "name": "first"
+  }
+},
+{
+  "model": "musics.artist",
+  "pk": 2,
+  "fields": {
+    "name": "second"
+  }
+},
+{
+  "model": "musics.artist",
+  "pk": 3,
+  "fields": {
+    "name": "third"
+  }
+},
+{
+  "model": "musics.music",
+  "pk": 1,
+  "fields": {
+    "artist": 1,
+    "title": "fffffirst"
+  }
+},
+{
+  "model": "musics.music",
+  "pk": 2,
+  "fields": {
+    "artist": 2,
+    "title": "sssssecond"
+  }
+},
+{
+  "model": "musics.music",
+  "pk": 3,
+  "fields": {
+    "artist": 3,
+    "title": "ttttthird"
+  }
+},
+{
+  "model": "musics.comment",
+  "pk": 1,
+  "fields": {
+    "music": 1,
+    "content": "fffffff"
+  }
+},
+{
+  "model": "musics.comment",
+  "pk": 2,
+  "fields": {
+    "music": 2,
+    "content": "ssssssss"
+  }
+},
+{
+  "model": "musics.comment",
+  "pk": 3,
+  "fields": {
+    "music": 3,
+    "content": "ttttttttt"
+  }
+}
+]

@@ -8,6 +8,7 @@
   <p>{{ article|hashtag_link|safe }}</p>
   <p>{{ article.created_at|date:"SHORT_DATE_FORMAT" }}</p>
   <p>{{ article.updated_at|date:"M, j, Y" }}</p>
+  
   {% if request.user == article.user %}
     <a href="{% url 'articles:update' article.pk %}">[UPDATE]</a>
     <form action="{% url 'articles:delete' article.pk %}" method="POST">
@@ -15,7 +16,9 @@
       <input type="submit" value="DELETE">
     </form>
   {% endif %}
+  
   <hr>
+  
   <!-- 댓글 출력 -->
   {% for comment in comments %}
     <div>
@@ -31,6 +34,7 @@
     <p><b>댓글이 없습니다.</b></p>
   {% endfor %}
   <hr>
+
   <!-- 댓글 입력 form -->
   {% if user.is_authenticated %}
     <form action="{% url 'articles:comments_create' article.pk %}" method="POST">

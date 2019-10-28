@@ -8,7 +8,7 @@ from django.views.decorators.http import require_POST
 from .models import Article, Comment, Hashtag
 from .forms import ArticleForm, CommentForm
 
-# Create your views here.
+
 def index(request):
     visits_num = request.session.get('visits_num', 0)
     request.session['visits_num'] = visits_num + 1
