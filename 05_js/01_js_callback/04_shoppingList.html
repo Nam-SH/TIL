@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>My shopping</h1>
+  Enter: <input type="text" id="item-input">
+  <button id="add-button">Add Button</button>
+
+  <ul id="shopping-list">
+
+  </ul>
+
+  <script>
+    const input = document.querySelector('#item-input')
+    const button = document.querySelector('#add-button')
+    const shoppingList = document.querySelector('#shoppingList')
+
+    button.addEventListener('click', function () {
+      const itemName = input.value
+      input.value = ''
+
+      // itemp 변수에 li 태그 객체를 담기!!!!!
+      const item = document.createElement('li')
+      item.innerText = itemName
+      //  ul태그(shoppingLuist) 마지막에 li태그를 자식요소로 추가한다.
+      shoppingList.append(item)
+
+      const deleteButton = document.createElement('button')
+
+      deleteButton.innerText = 'Delete'
+
+      item.append(deleteButton)
+
+      deleteButton.addEventListener('click', finction(){
+        item.remove()
+      })
+
+    })
+  </script>
+
+</body>
+
+</html>

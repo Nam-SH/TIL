@@ -538,13 +538,13 @@ urlpatterns = [
   def signup(request):
       if request.user.is_authenticated:
           return redirect('articles:index')
-      ...
+      pass
   
   
   def login(request):
       if request.user.is_authenticated:
           return redirect('articles:index')
-      ...
+      pass
   ```
 
 
