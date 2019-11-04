@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="function">function</button>
+  <button id="arrow">arrow function</button>
+
+  <script>
+    const functionButton = document.querySelector('#function')
+    const arrowButton = document.querySelector('#arrow')
+
+    functionButton.addEventListener('click', function (event) {
+      console.log(this)
+      console.log('---------------------------------------------')
+    })
+    arrowButton.addEventListener('click', event => {
+      console.log(this)
+    })
+
+    const greeting = function () {
+      console.log(this)
+    }
+
+    greeting()
+
+    const you = {
+      name: 'kim',
+      greeting
+    }
+
+    you.greeting()
+
+    const arrowGreeting = () => console.log(this)
+    const me = {
+      name: 'tak',
+      arrowGreeting
+    }
+    arrowGreeting()
+    me.arrowGreeting()
+
+    const num = {
+      number: [1],
+      print: function () {
+        console.log(this)
+        console.log(this.numbers)
+        this.numbers.forEach(function (num) {
+          console.log(num)
+          console.log(this)
+        })
+      }
+    }
+
+    num.print()
+
+    const num2 = {
+        number: [1],
+        print: function () {
+          console.log(this)
+          console.log(this.numbers)
+          this.numbers.forEach(function (num => {
+              console.log(num)
+              console.log(this)
+            })
+          )}
+        }
+        num2.print()
+  </script>
+
+</body>
+
+</html>
