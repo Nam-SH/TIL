@@ -1,57 +1,51 @@
-const nothing = () => {
-  console.log('sleeeeeeping~~~')
-}
+// function sleep_3s() {
+//   setTimeout(() => console.log('wake up'), 3000)
+// }
 
-console.log('start')
-setTimeout(nothing, 3000)
-console.log('end')
+// console.log('Start sleeping')
+// sleep_3s()
+// console.log('End of program')
 
-console.log('-----------------------------------')
+// function first() {
+//   console.log('first')
+// }
 
-function sleep_3s() {
-  setTimeout(() => console.log('wake up'), 3000)
-}
+// function second() {
+//   console.log('second')
+// }
 
-console.log('start2')
-sleep_3s()
-console.log('end2')
+// function third() {
+//   console.log('third')
+// }
 
-console.log('-----------------------------------')
-
-function first() {
-  console.log('first')
-}
-
-function second() {
-  console.log('second')
-}
-
-function third() {
-  console.log('third')
-}
-
-first()
-setTimeout(second, 1000)
-third()
+// first()
+// setTimeout(second, 1000)
+// third()
 
 
-console.log('-----------------------------------')
+console.log('Hi')
+
+setTimeout(function ssafy() {
+  console.log('ssafy')
+}, 0)
+
+console.log('bye')
 
 
-function printHello() {
-  console.log('hello from baz')
-}
+// function printHello() {
+//   console.log('hello from baz')
+// }
 
-function baz() {
-  setTimeout(printHello, 3000)
-}
+// function baz() {
+//   setTimeout(printHello, 3000)
+// }
 
-function bar() {
-  baz()
-}
+// function bar() {
+//   baz()
+// }
 
-function foo() {
-  bar()
-}
+// function foo() {
+//   bar()
+// }
 
-foo()
+// foo()

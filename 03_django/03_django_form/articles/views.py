@@ -1,20 +1,24 @@
 import hashlib
-from IPython import embed
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404, HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
-from .models import Article, Comment, Hashtag
+
+from IPython import embed
+
 from .forms import ArticleForm, CommentForm
+from .models import Article, Comment, Hashtag
 
 
+# Create your views here.
 def index(request):
     visits_num = request.session.get('visits_num', 0)
     request.session['visits_num'] = visits_num + 1
     request.session.modified = True
     articles = Article.objects.all()
-    context = {'articles': articles, 'visits_num': visits_num,}
+    context = {'articles': articles, 'visits_num': visits_num}
     return render(request, 'articles/index.html', context)
 
 
@@ -27,23 +31,32 @@ def create(request):
             article.user = request.user
             article.save()
             # hashtag
-            for word in article.content.split(): # content 를 공백 기준으로 리스트로 변경
-                if word.startswith('#'): # '#' 으로 시작하는 요소만 선택
-                    hashtag, created = Hashtag.objects.get_or_create(content=word) # word랑 같은 해시태그를 찾는데 있으면 기존 객체(.get), 없으면 새로운 객체를 생성(.create)
-                    article.hashtags.add(hashtag) # created 를 사용하지 않았다면, hashtag[0] 로 작성
+            for word in article.content.split():  # content 를 공백 기준으로 리스트로 변경
+                if word.startswith('#'):  # '#' 으로 시작하는 요소만 선택
+                    hashtag, created = Hashtag.objects.get_or_create(
+                        content=word
+                    )  # word랑 같은 해시태그를 찾는데 있으면 기존 객체(.get), 없으면 새로운 객체를 생성(.create)
+                    article.hashtags.add(
+                        hashtag
+                    )  # created 를 사용하지 않았다면, hashtag[0] 로 작성
             return redirect(article)
     else:
         form = ArticleForm()
-    context = {'form': form,}
+    context = {'form': form}
     return render(request, 'articles/form.html', context)
 
 
 def detail(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
-    comments = article.comment_set.all() # article 의 모든 댓글
+    comments = article.comment_set.all()  # article 의 모든 댓글
     person = get_object_or_404(get_user_model(), pk=article.user_id)
-    comment_form = CommentForm() # 댓글 폼
-    context = {'article': article, 'comment_form': comment_form, 'comments': comments, 'person': person,}
+    comment_form = CommentForm()  # 댓글 폼
+    context = {
+        'article': article,
+        'comment_form': comment_form,
+        'comments': comments,
+        'person': person,
+    }
     return render(request, 'articles/detail.html', context)
 
 
@@ -67,17 +80,17 @@ def update(request, article_pk):
             if form.is_valid():
                 article = form.save()
                 # hashtag
-                article.hashtags.clear() # 해당 article 의 hashtag 전체 삭제
+                article.hashtags.clear()  # 해당 article 의 hashtag 전체 삭제
                 for word in article.content.split():
-                    if word.startswith('#'): 
-                        hashtag, created = Hashtag.objects.get_or_create(content=word) 
+                    if word.startswith('#'):
+                        hashtag, created = Hashtag.objects.get_or_create(content=word)
                         article.hashtags.add(hashtag)
                 return redirect(article)
         else:
             form = ArticleForm(instance=article)
     else:
         return redirect('articles:index')
-    context = {'form': form, 'article': article,}
+    context = {'form': form, 'article': article}
     return render(request, 'articles/form.html', context)
 
 
@@ -139,6 +152,5 @@ def follow(request, article_pk, user_pk):
 def hashtag(request, hash_pk):
     hashtag = get_object_or_404(Hashtag, pk=hash_pk)
     articles = hashtag.article_set.order_by('-pk')
-    context = {'hashtag': hashtag, 'articles': articles,}
+    context = {'hashtag': hashtag, 'articles': articles}
     return render(request, 'articles/hashtag.html', context)
-    
