@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <span> 방법1: {{ name }}</span> <br>
+    <span v-text="name">방법2: </span>
+    <hr>
+    <span>{{ name2 }}</span> <br>
+    <span v-html="name2"></span>
+    <hr>
+    <p v-if="false"> {{ name3 }} </p>
+    <p v-show="false"> {{ name3 }} </p>
+
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        name: 'harry',
+        name2: '<h1>harry name2 h1태그 입니다.</h1>',
+        name3: 'harry; name3',
+      }
+    })
+  </script>
+
+</body>
+
+</html>
