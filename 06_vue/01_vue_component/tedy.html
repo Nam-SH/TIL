@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .todo-list {
+      display: inline-block;
+      width: 33%;
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <div id="app">
+    <div class="toto-list">
+      <h2>취업 준비</h2>
+      <input type="text" v-model="newTodo">
+      <button @click="addTodo">+</button>
+      <li v-for="todo in todos" v-bind:key="todo.id">
+        <span>{{ todo.content }} </span>
+        <button @click="removeTodo(todo)">삭제</button>
+      </li>
+    </div>
+
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        todos: [],
+        newTodo: '',
+      },
+      methods: {
+        addTodo: function () {
+          if (this.newTodo.length != 1) {
+            this.todos.push({
+              id: Date.now(),
+              content: this.newTodo,
+              completed: false,
+            })
+            this.newTodo = ''
+          }
+        },
+        removeTodo: function () {
+          this.todos.filter(todo => {
+            return todo.id !== todoId
+          })
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>
