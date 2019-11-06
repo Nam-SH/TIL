@@ -25,7 +25,7 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <script>
-    const getDogImage = function() {
+    const getDogImage = function () {
       axios.get('https://dog.ceo/api/breeds/image/random')
         .then(response => {
           const imgUrl = response.data.message
@@ -38,7 +38,7 @@
     const dogbtn = document.querySelector('#dog')
     dogbtn.addEventListener('click', getDogImage)
 
-    const getCatImage = function() {
+    const getCatImage = function () {
       axios.get('https://api.thecatapi.com/v1/images/search')
         .then(response => {
           const imgUrl2 = response.data[0].url

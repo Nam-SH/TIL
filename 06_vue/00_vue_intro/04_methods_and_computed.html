@@ -8,25 +8,31 @@
 </head>
 <body>
   <div id="app">
-    <span v-text="name"></span>
-    <span>{{ name }}</span>
-
-    {{ name2 }}
-    <span v-html="name2"></span>
-
-    <p v-if="false">{{ name3 }}</p>
-    <p v-show="false">{{ name3 }}</p>
+    <button v-on:click="visible = !visible">TOGGLE</button>
+    <ul v-if="visible">
+      <li>Method : {{ dateMethod() }}</li>
+      <li>Computed : {{ dateComputed }}</li>
+    </ul>
   </div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
     const app = new Vue({
       el: '#app',
       data: {
-        name: 'harry',
-        name2: '<h1>h1 태그입니다.</h1>',
-        name3: 'harrrry',
-      }
+        visible: true,
+      },
+      methods: {
+        dateMethod: function() {
+          return new Date()
+        }
+      },
+      computed: {
+        dateComputed: function() {
+          return new Date()
+        }
+      },
     })
   </script>
 </body>

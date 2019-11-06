@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -35,7 +35,7 @@
       </li>
     </div>
     <div class="todo-list">
-      <h2>ETC</h2>
+      <h2>기타</h2>
       <input type="text" v-model="newTodo3">
       <button v-on:click="addTodo3">+</button>
       <li v-for="todo in todos3" v-bind:key="todo.id">
@@ -44,6 +44,8 @@
       </li>
     </div>
   </div>
+
+
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
     const app = new Vue({
@@ -68,7 +70,7 @@
           }
         },
         removeTodo1: function (todoId) {
-          this.todos1 = this.todos1.filter(todo => {
+          this.todos1 = this.todos1.filter( todo => {
             return todo.id !== todoId
           })
         },
@@ -83,7 +85,7 @@
           }
         },
         removeTodo2: function (todoId) {
-          this.todos2 = this.todos2.filter(todo => {
+          this.todos2 = this.todos2.filter( todo => {
             return todo.id !== todoId
           })
         },
@@ -98,7 +100,7 @@
           }
         },
         removeTodo3: function (todoId) {
-          this.todos3 = this.todos3.filter(todo => {
+          this.todos3 = this.todos3.filter( todo => {
             return todo.id !== todoId
           })
         }

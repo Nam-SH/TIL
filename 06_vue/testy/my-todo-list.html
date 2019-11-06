@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,27 +13,28 @@
     }
   </style>
 </head>
+
 <body>
 
   <div id="app">
-    <h1>My Todo App</h1>
-    <todo-list category="취업특강"></todo-list>
-    <todo-list category="SSAFY"></todo-list>
-    <todo-list category="기타"></todo-list>
+    <h1>My Todo List</h1>
+    <my-todo-list category="하고 싶은 일"></my-todo-list>
+    <my-todo-list category="해야 하는 일"></my-todo-list>
   </div>
-  
+
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
     // 컴포넌트 등록
-    Vue.component('todo-list', {
+    Vue.component('my-todo-list', {
       template: `
-      <div class="todo-list">
-        <h2>{{ category }}</h2>
+      <div>
+        <h2 :style="{color:titleColor}" @click="changeColor">{{ category }}</h2>
         <input type="text" v-model="newTodo">
-        <button @click="addTodo">+</button>
-        <li v-for="todo in todos" v-bind:key="todo.id">
+        <button @click="addTodo">+추가+</button>
+        <li v-for="todo in todos" :key="todo.id">
         <span>{{ todo.content }}</span>
-        <button @click="removeTodo(todo.id)">x</button>
+        <button @click="removeTodo(todo.id)">x삭제x</button>
+        <button @click="removeTodo2(todo.id)">xx삭제xx</button>
         </li>
       </div>`,
       props: {
@@ -48,12 +50,12 @@
           },
         }
       },
-      // 컴포넌트에서 data 는 함수여야 한다.
-      // 이제 모든 todos 와 newTodo 는 각각 고유한 내부 상태가 있다.
-      data: function() {
+      data: function () {
         return {
           todos: [],
           newTodo: '',
+          todayDate: '',
+          titleColor: 'red'
         }
       },
       methods: {
@@ -63,15 +65,28 @@
               id: Date.now(),
               content: this.newTodo,
               completed: false,
+              todayDate: Date.now()
             })
             this.newTodo = ''
           }
         },
         removeTodo: function (todoId) {
-          this.todos = this.todos.filter( todo => {
+          this.todos = this.todos.filter(todo => {
             return todo.id !== todoId
           })
         },
+        removeTodo2: function (todoId) {
+          this.todos.splice(this.todos.filter(todo => {
+            return todo.id == todoId
+          }), 1)
+        },
+        changeColor: function () {
+          if (this.titleColor === 'red') {
+            this.titleColor = 'blue'
+          } else {
+            this.titleColor = 'red'
+          }
+        }
       },
     })
 
@@ -80,4 +95,5 @@
     })
   </script>
 </body>
+
 </html>
