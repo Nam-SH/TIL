@@ -12,10 +12,11 @@
     }
   </style>
 </head>
+
 <body>
   <div id="app">
-    <button v-on:click="getDogImage">댕댕이 내놔</button>
-    <button v-on:click="getCatImage">주인님 내놔</button>
+    <button v-on:mouseover="getDogImage">댕댕이 내놔</button>
+    <button v-on:click.middle="getCatImage">주인님 내놔</button>
 
     <img v-for="image in images" v-bind:src="image" alt="img" v-if="image">
 

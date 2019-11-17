@@ -23,7 +23,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
+    
     const STORAGE_KEY = 'vue-todos'
+    
     const todoStorage = {
       fetch: function() {
         return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
@@ -32,8 +34,6 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
       }
     }
-
-
 
     const app = new Vue({
       el: '#app',
@@ -51,6 +51,7 @@
         }
       },
     })
+
   </script>
 
 </body>

@@ -1,0 +1,51 @@
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<div id="app">
+  <p>originalNumber: {{ originalNumber }}</p>
+  <p>arrowNumber: {{ arrowNumber }}</p>
+  <button @click="originalFunction()">기존 방식</button>
+  <button @click="arrowFunction()">arrow function</button>
+</div>
+
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      originalNumber: 0,
+      arrowNumber: 0,
+    },
+    methods: {
+      originalFunction: function () {
+        setTimeout(function () { // 기존함수 선언법
+          console.log('original timeout')
+          this.originalNumber = 3
+        }, 1000)
+      },
+      arrowFunction: function () {
+        setTimeout(() => { // arrow Function
+          console.log('arrow timeout')
+          this.arrowNumber = 3
+        }, 1000)
+      }
+    }
+  })
+</script>
+
+<div id="app-2">
+  <p v-for="item in items">
+    {{ item.message }}
+  </p>
+</div>
+
+<script>
+  var app2 = new Vue({
+    el: "#app-2",
+    data: [{
+        message: 'Foo'
+      },
+      {
+        message: 'Bar'
+      }
+    ]
+  })
+</script>

@@ -32,17 +32,21 @@
       <input type="checkbox" v-model="todo.completed">
       <span>{{ todo.content }}</span>
     </div>
+    
     <div>
       <input type="text" v-model="newTodo" @keyup.enter="addTodo">
       <button @click="addTodo">+</button>
     </div>
+    
     <footer>
       <button @click="clearCompleted">Clear</button>
     </footer>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  
   <script>
+
     const STORAGE_KEY = 'vue-todos'
     const todoStorage = {
       fetch: function() {
@@ -142,6 +146,7 @@
       },
     })
   </script>
+
 </body>
 
 </html>
