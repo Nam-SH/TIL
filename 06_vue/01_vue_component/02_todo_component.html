@@ -13,14 +13,12 @@
   </style>
 </head>
 <body>
-
   <div id="app">
     <h1>My Todo App</h1>
     <todo-list category="취업특강"></todo-list>
     <todo-list category="SSAFY"></todo-list>
     <todo-list category="기타"></todo-list>
   </div>
-  
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
     // 컴포넌트 등록
@@ -29,10 +27,10 @@
       <div class="todo-list">
         <h2>{{ category }}</h2>
         <input type="text" v-model="newTodo">
-        <button @click="addTodo">+</button>
+        <button v-on:click="addTodo">+</button>
         <li v-for="todo in todos" v-bind:key="todo.id">
         <span>{{ todo.content }}</span>
-        <button @click="removeTodo(todo.id)">x</button>
+        <button v-on:click="removeTodo(todo.id)">x</button>
         </li>
       </div>`,
       props: {
@@ -62,7 +60,6 @@
             this.todos.push({
               id: Date.now(),
               content: this.newTodo,
-              completed: false,
             })
             this.newTodo = ''
           }
