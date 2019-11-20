@@ -2,19 +2,18 @@
   <div>
     <LoginForm/>
   </div>
-  
 </template>
 
 <script>
-  // @ is an alias to /src
+  // @ 는 `/src` 의 alias
   // import LoginForm from '../components/LoginForm'
   import LoginForm from '@/components/LoginForm'
 
   export default {
-     name: 'login',
-     components: {
-       LoginForm
-     }
+    name: 'login',
+    components: {
+      LoginForm,
+    }
   }
 </script>
 
