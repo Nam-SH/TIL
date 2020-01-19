@@ -39,7 +39,8 @@
 
 <script>
   import axios from 'axios'
-  import router from '../router'
+  import router from '../router' 
+  
 
   export default {
     name: 'LoginForm',
@@ -66,6 +67,7 @@
             this.$store.dispatch('endLoading')
             this.$store.dispatch('login', res.data.token)
             router.push('/')
+
           })
           .catch(err => {
             this.$store.dispatch('endLoading')

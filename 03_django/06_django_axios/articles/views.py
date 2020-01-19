@@ -1,6 +1,6 @@
 import hashlib
 
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.http import JsonResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponse
@@ -117,10 +117,9 @@ def comments_delete(request, article_pk, comment_pk):
     return HttpResponse('You are Unauthorized', status=401)
 
 
-@login_required
+# @login_required
 def like(request, article_pk):
     if request.is_ajax():
-
         article = get_object_or_404(Article, pk=article_pk)
 
         if article.like_users.filter(pk=request.user.pk).exists():
@@ -132,15 +131,14 @@ def like(request, article_pk):
         context = {'liked': liked, 'count': article.like_users.count(),}
         return JsonResponse(context)
     else:
-        HttpResponseBadRequest()
-        
-        # 해당 게시글에 좋아요를 누른 사람들 중에서 현재 접속유저가 있다면 좋아요를 취소
-        # if request.user in article.like_users.all():
-        #     article.like_users.remove(request.user) # 좋아요 취소
-        # else:
-        #     article.like_users.add(request.user) # 좋아요
-        
-        # return redirect('articles:index')
+        return HttpResponseBadRequest()
+
+    # 해당 게시글에 좋아요를 누른 사람들 중에서 현재 접속유저가 있다면 좋아요를 취소
+    # if request.user in article.like_users.all():
+    #     article.like_users.remove(request.user) # 좋아요 취소
+    # else:
+    #     article.like_users.add(request.user) # 좋아요
+    
 
 
 @login_required

@@ -44,14 +44,17 @@
       },
       updateTodo(todo) {
         const requestForm = new FormData()
+
         requestForm.append('id', todo.id)
         requestForm.append('title', todo.title)
         requestForm.append('user', todo.user)
         requestForm.append('completed', !todo.completed)
 
+        console.log(requestForm)
+
         axios.put(`http://127.0.0.1:8000/api/v1/todos/${todo.id}/`, requestForm, this.requestHeader)
           .then(res => {
-            console.log(res)
+            console.log('updateTodo::: res',res)
             todo.completed = !todo.completed
           })
           .catch(err => {

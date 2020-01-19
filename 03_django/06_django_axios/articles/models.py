@@ -24,7 +24,7 @@ class Article(models.Model):
 
     class Meta:
         ordering = ('-pk',)
-
+    
     def __str__(self):
         return self.title
 
